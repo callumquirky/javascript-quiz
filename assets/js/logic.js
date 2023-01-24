@@ -38,7 +38,8 @@ function displayQuestion(questionCount){
         questionChoices.appendChild(choiceButton);
         choiceButton.addEventListener("click", function() {
             userAnswer = choiceButton.textContent;
-            console.log(userAnswer);
+            console.log(questionCount);
+            console.log(questions.length)
             if (userAnswer === correctAnswer){
                 questionCount++;
                 userScore++;
@@ -49,13 +50,12 @@ function displayQuestion(questionCount){
             if (time < 0) {
                 gameOver();
             }
-            if (questionCount > questions.length){
-                gameover();
+            if (questionCount > questions.length-1){
+                gameOver();
             }
-            else {
-                displayQuestion(questionCount);
-            }
-            
+                else {
+                    displayQuestion(questionCount);
+                }
         })
     }
 }
