@@ -10,6 +10,7 @@ let endScreen = document.getElementById("end-screen");
 let displayFinalScore = document.getElementById("final-score");
 let time = 1200;
 let finalScore = 0;
+let gameIsOver = false;
 
 function playerTimer(){
     time = 1200;
@@ -19,10 +20,11 @@ function playerTimer(){
         if (time < 0) {
             clearInterval(timer);
         }
-        if (questionCount > questions.length-1){
+        if (gameIsOver == true){
             clearInterval(timer);
         }
     }, 100);
+    return time;
 }
 
 function displayQuestion(questionCount){
@@ -53,18 +55,22 @@ function displayQuestion(questionCount){
             if (questionCount > questions.length-1){
                 gameOver();
             }
-                else {
-                    displayQuestion(questionCount);
-                }
+             else {
+                displayQuestion(questionCount);
+            }
         })
     }
 }
 
 function gameOver(){
+    gameIsOver = true;
     questionScreen.classList.toggle("hide");
     endScreen.classList.toggle("hide");
     finalScore = userScore * time;
-    displayFinalScore = finalScore;
+    console.log(time)
+    console.log(userScore)
+    console.log(finalScore)
+    displayFinalScore.textContent = finalScore;
 }
 	
 startButton.addEventListener("click", function() {
