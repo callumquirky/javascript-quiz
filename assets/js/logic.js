@@ -11,6 +11,8 @@ let displayFinalScore = document.getElementById("final-score");
 let time = 1200;
 let finalScore = 0;
 let gameIsOver = false;
+let submitButton = document.getElementById("submit");
+let userInitials = document.getElementById("initials");
 
 function playerTimer(){
     time = 1200;
@@ -67,13 +69,10 @@ function gameOver(){
     questionScreen.classList.toggle("hide");
     endScreen.classList.toggle("hide");
     finalScore = userScore * time;
-    console.log(time)
-    console.log(userScore)
-    console.log(finalScore)
     displayFinalScore.textContent = finalScore;
 }
 	
-startButton.addEventListener("click", function() {
+startButton.addEventListener("click", function(){
     questionScreen.classList.toggle("hide")
     startScreen.classList.toggle("hide");
     displayQuestion(0);
@@ -81,4 +80,6 @@ startButton.addEventListener("click", function() {
 } 
 )
 
-
+submitButton.addEventListener("submit", function(){
+    saveHighScore();
+})
