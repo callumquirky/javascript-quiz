@@ -7,7 +7,7 @@ let startScreen = document.getElementById("start-screen");
 let startButton = document.getElementById("start");
 let questionScreen = document.getElementById("questions");
 let endScreen = document.getElementById("end-screen");
-let displayFinalScore = document.getElemenyById("final-score");
+let displayFinalScore = document.getElementById("final-score");
 let time = 1200;
 let finalScore = 0;
 
@@ -49,7 +49,13 @@ function displayQuestion(questionCount){
             if (time < 0) {
                 gameOver();
             }
-            displayQuestion(questionCount);
+            if (questionCount > questions.length){
+                gameover();
+            }
+            else {
+                displayQuestion(questionCount);
+            }
+            
         })
     }
 }
@@ -57,7 +63,8 @@ function displayQuestion(questionCount){
 function gameOver(){
     questionScreen.classList.toggle("hide");
     endScreen.classList.toggle("hide");
-    finalScore = userScore * time
+    finalScore = userScore * time;
+    displayFinalScore = finalScore;
 }
 	
 startButton.addEventListener("click", function() {
