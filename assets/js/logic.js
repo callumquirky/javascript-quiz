@@ -4,7 +4,8 @@ let userAnswer = ""
 let questionCount = 0
 let startScreen = document.getElementById("start-screen");
 let startButton = document.getElementById("start");
-let endScreen = document.getElementById("end-screen")
+let questionScreen = document.getElementById("questions");
+let endScreen = document.getElementById("end-screen");
 let time = 1200
 
 function playerTimer(){
@@ -40,7 +41,8 @@ function displayQuestion(questionCount){
                 time -= 100;
             }
             if (time < 0) {
-                startScreen.classList.toggle("hide");
+                questionScreen.classList.toggle("hide");
+                endScreen.classList.toggle("hide");
             }
             displayQuestion(questionCount)
         })
@@ -48,7 +50,7 @@ function displayQuestion(questionCount){
 }
 	
 startButton.addEventListener("click", function() {
-    document.getElementById("questions").classList.toggle("hide")
+    questionScreen.classList.toggle("hide")
     startScreen.classList.toggle("hide");
     displayQuestion(0);
     playerTimer();
