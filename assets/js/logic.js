@@ -1,19 +1,25 @@
-let questionTitle = document.getElementById("question-title")
-let questionChoices = document.getElementById("choicesList")
-let userAnswer = ""
-let questionCount = 0
+let questionTitle = document.getElementById("question-title");
+let questionChoices = document.getElementById("choicesList");
+let userAnswer = "";
+let questionCount = 0;
+let userScore = 0;
 let startScreen = document.getElementById("start-screen");
 let startButton = document.getElementById("start");
 let questionScreen = document.getElementById("questions");
 let endScreen = document.getElementById("end-screen");
-let time = 1200
+let displayFinalScore = document.getElemenyById("final-score");
+let time = 1200;
+let finalScore = 0;
 
 function playerTimer(){
-    time = 1200
+    time = 1200;
     let timer = setInterval(function(){
         document.getElementById("time").innerHTML=time;
         time--;
         if (time < 0) {
+            clearInterval(timer);
+        }
+        if (questionCount > questions.length){
             clearInterval(timer);
         }
     }, 100);
@@ -21,11 +27,10 @@ function playerTimer(){
 
 function displayQuestion(questionCount){
     userAnswer = "";
-    questionTitle.innerHTML=""
-    questionChoices.innerHTML=""
-    let correctAnswer = questions[questionCount].answer
-    console.log(correctAnswer);
-    questionTitle.textContent=questions[questionCount].question
+    questionTitle.innerHTML="";
+    questionChoices.innerHTML="";
+    let correctAnswer = questions[questionCount].answer;
+    questionTitle.textContent=questions[questionCount].question;
     for (let i=0; i<questions[questionCount].choices.length; i++) {
         let choice = questions[questionCount].choices[i];
         let choiceButton = document.createElement("button");
@@ -35,18 +40,24 @@ function displayQuestion(questionCount){
             userAnswer = choiceButton.textContent;
             console.log(userAnswer);
             if (userAnswer === correctAnswer){
-                questionCount++
+                questionCount++;
+                userScore++;
             }
             if (userAnswer !== correctAnswer){
                 time -= 100;
             }
             if (time < 0) {
-                questionScreen.classList.toggle("hide");
-                endScreen.classList.toggle("hide");
+                gameOver();
             }
-            displayQuestion(questionCount)
+            displayQuestion(questionCount);
         })
     }
+}
+
+function gameOver(){
+    questionScreen.classList.toggle("hide");
+    endScreen.classList.toggle("hide");
+    finalScore = userScore * time
 }
 	
 startButton.addEventListener("click", function() {
