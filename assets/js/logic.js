@@ -4,9 +4,18 @@ let userAnswer = ""
 let questionCount = 0
 let startScreen = document.getElementById("start-screen");
 let startButton = document.getElementById("start");
+let endScreen = document.getElementById("end-screen")
+let time = 1200
 
 function playerTimer(){
-
+    time = 1200
+    let timer = setInterval(function(){
+        document.getElementById("time").innerHTML=time;
+        time--;
+        if (time < 0) {
+            clearInterval(timer);
+        }
+    }, 100);
 }
 
 function displayQuestion(questionCount){
@@ -27,6 +36,12 @@ function displayQuestion(questionCount){
             if (userAnswer === correctAnswer){
                 questionCount++
             }
+            if (userAnswer !== correctAnswer){
+                time -= 100;
+            }
+            if (time < 0) {
+                startScreen.classList.toggle("hide");
+            }
             displayQuestion(questionCount)
         })
     }
@@ -36,6 +51,7 @@ startButton.addEventListener("click", function() {
     document.getElementById("questions").classList.toggle("hide")
     startScreen.classList.toggle("hide");
     displayQuestion(0);
+    playerTimer();
 } 
 )
 
