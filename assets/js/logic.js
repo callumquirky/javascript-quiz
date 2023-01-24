@@ -19,7 +19,7 @@ function playerTimer(){
         if (time < 0) {
             clearInterval(timer);
         }
-        if (questionCount > questions.length){
+        if (questionCount > questions.length-1){
             clearInterval(timer);
         }
     }, 100);
