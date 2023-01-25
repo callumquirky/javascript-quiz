@@ -13,6 +13,7 @@ let finalScore = 0;
 let gameIsOver = false;
 let submitButton = document.getElementById("submit");
 let userInitials = document.getElementById("initials");
+let savedHighScores = JSON.parse(localStorage.getItem('savedHighScores')) ?? [];
 
 function playerTimer(){
     time = 1200;
@@ -42,8 +43,6 @@ function displayQuestion(questionCount){
         questionChoices.appendChild(choiceButton);
         choiceButton.addEventListener("click", function() {
             userAnswer = choiceButton.textContent;
-            console.log(questionCount);
-            console.log(questions.length)
             if (userAnswer === correctAnswer){
                 questionCount++;
                 userScore++;
@@ -71,6 +70,18 @@ function gameOver(){
     finalScore = userScore * time;
     displayFinalScore.textContent = finalScore;
 }
+
+function saveHighScore(){
+    let userFinalScore = {
+        initials: userInitials.value,
+        score: finalScore,
+    }
+    console.log(savedHighScores)
+    savedHighScores.push(userFinalScore)
+    console.log(savedHighScores)
+
+    localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores))
+}
 	
 startButton.addEventListener("click", function(){
     questionScreen.classList.toggle("hide")
@@ -80,6 +91,7 @@ startButton.addEventListener("click", function(){
 } 
 )
 
-submitButton.addEventListener("submit", function(){
+submitButton.addEventListener("click", function(){
     saveHighScore();
+    window.location.href = "highscores.html"
 })
