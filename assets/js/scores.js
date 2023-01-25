@@ -2,6 +2,7 @@ createHighScores()
 
 function createHighScores(){
     let savedHighScores = JSON.parse(localStorage.getItem('savedHighScores')) ?? [];
+    savedHighScores.sort((a, b) => b.score - a.score);
     for (let i=0; i<savedHighScores.length; i++) {
         let  highScore = savedHighScores[i];
         let highScoreLi = document.createElement("li");

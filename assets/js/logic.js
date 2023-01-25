@@ -8,15 +8,16 @@ let startButton = document.getElementById("start");
 let questionScreen = document.getElementById("questions");
 let endScreen = document.getElementById("end-screen");
 let displayFinalScore = document.getElementById("final-score");
-let time = 6000;
+let time;
 let finalScore = 0;
 let gameIsOver = false;
 let submitButton = document.getElementById("submit");
 let userInitials = document.getElementById("initials");
 let savedHighScores = JSON.parse(localStorage.getItem('savedHighScores')) ?? [];
 
+
 function playerTimer(){
-    time = 6000;
+    time = 3000;
     let timer = setInterval(function(){
         document.getElementById("time").innerHTML=time;
         time--;
@@ -43,23 +44,27 @@ function displayQuestion(questionCount){
         questionChoices.appendChild(choiceButton);
         choiceButton.addEventListener("click", function() {
             userAnswer = choiceButton.textContent;
-            document.getElementsByClassName("correct").innerHTML ="";
-            document.getElementsByClassName("incorrect").innerHTML ="";
+            
             if (userAnswer === correctAnswer){
                 questionCount++;
                 userScore++;
                 let correct = document.createElement("h3");
-                correct.setAttribute("class", "correct")
                 correct.innerHTML="CORRECT"
+                correct.classList.add("correct");
                 questionScreen.appendChild(correct)
-
+                setTimeout(function(){
+                    correct.classList.add("hide")
+                }, 3000)
             }
-            if (userAnswer !== correctAnswer){
+            else{
                 time -= 100;
                 let incorrect = document.createElement("h3");
-                incorrect.setAttribute("class", "incorrect")
                 incorrect.innerHTML="INCORRECT: -100!"
+                incorrect.classList.add("incorrect");
                 questionScreen.appendChild(incorrect)
+                setTimeout(function(){
+                    incorrect.classList.add("hide")
+                }, 3000)
             }
             if (time < 0) {
                 gameOver();
@@ -90,7 +95,6 @@ function saveHighScore(){
     console.log(savedHighScores)
     savedHighScores.push(userFinalScore)
     console.log(savedHighScores)
-
     localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores))
 }
 	
@@ -103,6 +107,11 @@ startButton.addEventListener("click", function(){
 )
 
 submitButton.addEventListener("click", function(){
-    saveHighScore();
-    window.location.href = "highscores.html"
+    if (userInitials.value.length > 3){
+        alert("Please input initials lower than 3!")
+    }
+    else{
+        saveHighScore();
+        window.location.href = "highscores.html"
+    }
 })

@@ -11,17 +11,17 @@ questions = [
 	},
 	{
 	question: "How to create a variable with all of the <p> elements on the page?",
-	choices: ["document.querySelectorAll('p')", "document.getElementId('p')", "document.querySelector('p')"],
-	answer: "document.querySelectorAll('p')",
+	choices: ["let Ps = document.querySelectorAll('p')", "let Ps = document.getElementId('p')", "let Ps = document.querySelector('p')"],
+	answer: "let Ps = document.querySelectorAll('p')",
 	},
 	{
-	question: "How to call the value 'cheese' from the following object using dot notation? pizza = { tasty:yes, ingredients=['tomatoes', 'cheese', 'dough']",
-	choices: ["console.log(pizza.ingredients[2]", "console.log(pizza.ingredients[1]", "pizza.ingredients.cheese"],
-	answer: "console.log(pizza.ingredients[1]",
+	question: "How to log the value 'cheese' from the following object using dot notation? pizza = { tasty:yes, ingredients=['tomatoes', 'cheese', 'dough']",
+	choices: ["console.log(pizza.ingredients[2])", "console.log(pizza.ingredients[1])", "console.log(pizza.ingredients.cheese)"],
+	answer: "console.log(pizza.ingredients[1])",
 	},
 	{
 	question: "How to create a for loop?",
-	choices: ["for(let i=0; i<array.length; i++)", "for(i=0; i<array.length; i++)", "for(let i=0; i>array.length; i++)"],
+	choices: ["for(let i=0; i<array.length; i++)", "for(i=0; i<array(length); i++)", "for(let i=0, i>array.length, i++)"],
 	answer: "for(let i=0; i<array.length; i++)",
 	},
 ]
