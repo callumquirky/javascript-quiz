@@ -8,7 +8,7 @@ let startButton = document.getElementById("start");
 let questionScreen = document.getElementById("questions");
 let endScreen = document.getElementById("end-screen");
 let displayFinalScore = document.getElementById("final-score");
-let time = 1200;
+let time = 6000;
 let finalScore = 0;
 let gameIsOver = false;
 let submitButton = document.getElementById("submit");
@@ -16,7 +16,7 @@ let userInitials = document.getElementById("initials");
 let savedHighScores = JSON.parse(localStorage.getItem('savedHighScores')) ?? [];
 
 function playerTimer(){
-    time = 1200;
+    time = 6000;
     let timer = setInterval(function(){
         document.getElementById("time").innerHTML=time;
         time--;
@@ -43,12 +43,23 @@ function displayQuestion(questionCount){
         questionChoices.appendChild(choiceButton);
         choiceButton.addEventListener("click", function() {
             userAnswer = choiceButton.textContent;
+            document.getElementsByClassName("correct").innerHTML ="";
+            document.getElementsByClassName("incorrect").innerHTML ="";
             if (userAnswer === correctAnswer){
                 questionCount++;
                 userScore++;
+                let correct = document.createElement("h3");
+                correct.setAttribute("class", "correct")
+                correct.innerHTML="CORRECT"
+                questionScreen.appendChild(correct)
+
             }
             if (userAnswer !== correctAnswer){
                 time -= 100;
+                let incorrect = document.createElement("h3");
+                incorrect.setAttribute("class", "incorrect")
+                incorrect.innerHTML="INCORRECT: -100!"
+                questionScreen.appendChild(incorrect)
             }
             if (time < 0) {
                 gameOver();
