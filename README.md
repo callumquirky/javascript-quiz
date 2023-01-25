@@ -10,6 +10,10 @@ Once the user has completed the quiz (either by completing all the questions or 
 
 ![highscore-picture](assets/images/highscore-page.PNG)
 
+## Deployed application
+
+Link to the deployed application: https://callumquirky.github.io/javascript-quiz/
+
 ## License
 
 This project uses an MIT license.
