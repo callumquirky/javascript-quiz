@@ -54,7 +54,7 @@ function displayQuestion(questionCount){
                 questionScreen.appendChild(correct)
                 setTimeout(function(){
                     correct.classList.add("hide")
-                }, 3000)
+                }, 4500)
             }
             else{
                 time -= 100;
@@ -64,7 +64,7 @@ function displayQuestion(questionCount){
                 questionScreen.appendChild(incorrect)
                 setTimeout(function(){
                     incorrect.classList.add("hide")
-                }, 3000)
+                }, 4500)
             }
             if (time < 0) {
                 gameOver();
